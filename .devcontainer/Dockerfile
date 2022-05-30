@@ -10,3 +10,10 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+
+# Prepare opencart
+RUN git clone https://github.com/opencart/opencart.git \
+    && cd ./opencart/ \
+    && git checkout ${OPENCART_COMMIT} \
+    && mv ./upload/config-dist.php ./upload/config.php \
+    && mv ./upload/admin/config-dist.php ./upload/admin/config.php
