@@ -1,4 +1,5 @@
 # [Choice] PHP version (use -bullseye variants on local arm64/Apple Silicon): 8, 8.1, 8.0, 7, 7.4, 7.3, 8-bullseye, 8.1-bullseye, 8.0-bullseye, 7-bullseye, 7.4-bullseye, 7.3-bullseye, 8-buster, 8.1-buster, 8.0-buster, 7-buster, 7.4-buster
+RUN echo ${VARIANT}
 FROM mcr.microsoft.com/vscode/devcontainers/php:${VARIANT}
 
 # [Choice] Node.js version: none, lts/*, 16, 14, 12, 10
@@ -10,10 +11,3 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
-
-# Prepare opencart
-RUN git clone https://github.com/opencart/opencart.git \
-    && cd ./opencart/ \
-    && git checkout ${OPENCART_COMMIT} \
-    && mv ./upload/config-dist.php ./upload/config.php \
-    && mv ./upload/admin/config-dist.php ./upload/admin/config.php
