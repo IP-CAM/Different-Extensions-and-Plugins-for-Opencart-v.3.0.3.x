@@ -1,6 +1,7 @@
 {
 	"name": "Opencart plugins codespace",
 	"build": { "dockerfile": "Dockerfile" },
+	"postStartCommand": "sudo service apache2 start",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -15,16 +16,21 @@
 			"extensions": [
 				"xdebug.php-debug",
 				"bmewburn.vscode-intelephense-client",
-				"mrmlnc.vscode-apache"
+				"mrmlnc.vscode-apache",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [80, 8080],
+	"forwardPorts": [80, 2222, 8080],
 	"portsAttributes": {
 		"80": {
 			"label": "web",
+			"onAutoForward": "silent"
+		},
+		"2222": {
+			"label": "sshd",
 			"onAutoForward": "silent"
 		},
 		"8080": {

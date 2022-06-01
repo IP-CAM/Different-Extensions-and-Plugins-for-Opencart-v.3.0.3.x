@@ -13,7 +13,8 @@ RUN su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install 14 
 
 COPY ./scripts/*.sh /temp/scripts/
 COPY ./configs/*.conf /temp/configs/
+COPY ./html/ /temp/html/
 
-RUN chmod -x /temp/ && bash /temp/scripts/opencart.sh \
-                    && bash /temp/scripts/aliases.sh \
-                    && rm -rf /temp/
+RUN chmod -x /temp/ && bash /temp/scripts/opencart.sh
+RUN bash /temp/scripts/aliases.sh
+RUN rm -rf /temp/

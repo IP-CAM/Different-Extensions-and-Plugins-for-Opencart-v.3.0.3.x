@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
-BASHRC="/home/vscode/.bashrc"
-sed -i -e "s/#alias ll='ls -l'/alias ll='ls -l'/g" $BASHRC
-sed -i -e "s/#alias la='ls -A'/alias la='ls -A'/g" $BASHRC
-sed -i -e "s/#alias l='ls -CF'/alias l='ls -CF'/g" $BASHRC
+VSCODE_BASHRC="/home/vscode/.bashrc"
+ROOT_BASHRC="/root/.bashrc"
+
+LL_COMMAND="alias ll='ls -l'"
+LA_COMMAND="alias la='ls -A'"
+L_COMMAND="alias l='ls -CF'"
+
+sed -i -e "s/#${LL_COMMAND}/${LL_COMMAND}/g" $VSCODE_BASHRC
+sed -i -e "s/#${LA_COMMAND}/${LA_COMMAND}/g" $VSCODE_BASHRC
+sed -i -e "s/#${L_COMMAND}/${L_COMMAND}/g" $VSCODE_BASHRC
+
+echo $LL_COMMAND >> $ROOT_BASHRC
+echo $LA_COMMAND >> $ROOT_BASHRC
+echo $L_COMMAND >> $ROOT_BASHRC
