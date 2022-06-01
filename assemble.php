@@ -5,7 +5,7 @@
  */
 
 $root = dirname(__FILE__);
-$excludeDirs = ['.git', '.github', '.idea'];
+$excludeDirs = ['.git', '.github', '.idea', '.devcontainer'];
 $excludeFromZip = ['docs'];
 
 /**

@@ -10,3 +10,10 @@ RUN su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install 14 
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+
+COPY ./scripts/*.sh /temp/scripts/
+COPY ./configs/*.conf /temp/configs/
+
+RUN chmod -x /temp/ && bash /temp/scripts/opencart.sh \
+                    && bash /temp/scripts/aliases.sh \
+                    && rm -rf /temp/
